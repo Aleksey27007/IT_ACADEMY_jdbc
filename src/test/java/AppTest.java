@@ -65,8 +65,8 @@ public class AppTest {
         UserDaoImpl userDao = new UserDaoImpl();
 
         connection = getNewConnection();
-        List<User> users = userDao.update(2, "+375239218888", connection);
-        assertEquals(users.get(1).getPhone(), "+375239218888");
+        List<User> users = userDao.update(2, "+375339218888", connection);
+        assertEquals(users.get(1).getPhone(), "+375339218888");
     }
 
     @Test

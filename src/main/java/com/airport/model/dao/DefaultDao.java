@@ -1,7 +1,5 @@
 package com.airport.model.dao;
 
-import com.airport.model.entity.User;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
