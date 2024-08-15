@@ -15,6 +15,8 @@ import static org.testng.AssertJUnit.*;
 
 
 public class AppTest {
+
+    // лучше сгруппировать тесты по классам, которые тестируешь и назвать Например UserDaoTes
     private final Properties properties = new Properties();
     private static Connection connection;
 
