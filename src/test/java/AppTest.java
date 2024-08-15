@@ -31,7 +31,7 @@ public class AppTest {
 
     @Test
     public void shouldCreateNewUser() throws SQLException {
-        User user = new User(3,"Evgeniy", "+375297777777", 3);
+        User user = new User(4,"Evgeniy", "+375297777777", 5);
 
         UserDaoImpl userDao = new UserDaoImpl();
 
@@ -49,6 +49,8 @@ public class AppTest {
 
         int lastUserId = users.get(user.getId() - 1).getId();
         assertEquals(lastUserId, user.getId());
+
+        userDao.delete(3, connection);
     }
     @Test
     public void shouldReadTableUser() throws SQLException {
@@ -73,8 +75,22 @@ public class AppTest {
     public void shouldDeleteUser() throws SQLException {
         UserDaoImpl userDao = new UserDaoImpl();
 
+        User user = new User(4, "Aleksey", "+375444444444", 6);
+
+        try (Statement statement = connection.createStatement()){
+
+            userDao.create(user, statement.getConnection());
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
         connection = getNewConnection();
-        userDao.delete(3, connection);
+        userDao.delete(4, connection);
+
+        List<User> users = userDao.read("user", connection);
+        assertNull(users.get(users.size() - 1).getName(), null);
     }
 
     @Test
